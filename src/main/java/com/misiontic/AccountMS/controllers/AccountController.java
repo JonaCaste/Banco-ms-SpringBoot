@@ -1,6 +1,7 @@
 package com.misiontic.AccountMS.controllers;
 
 import com.misiontic.AccountMS.models.Account;
+import com.misiontic.AccountMS.exceptions.AccountNotFoundException;
 import com.misiontic.AccountMS.repositories.AccountRepository;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,9 +34,15 @@ public class AccountController {
 
     //Metodo cuando no estamos seguros de que tipo vamos a recibir
         //por ejemplo si no existe
-    @GetMapping("/accounts/{username}")
+    /*@GetMapping("/accounts/{username}")
     public Optional<Account> getAccount(@PathVariable String username){
         return this.accountRepository.findById(username);
+    }*/
+    @GetMapping("/accounts/{username}")
+    public Account getAccount(@PathVariable String username){
+        return this.accountRepository.findById(username)
+                .orElseThrow(() -> new AccountNotFoundException("La cuenta no existe"));
+        //en lugar del optiona, retornamos un mensaje personalizado si no existe
     }
 
 
