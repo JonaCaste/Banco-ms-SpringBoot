@@ -48,3 +48,32 @@ Metodos:
 * PostMapping -> convierte un metodo en un endpoint de tipo POST
 * PutMapping -> convierte un metodo en un endpoint de tipo UPDATE
 * DeleteMapping -> convierte un metodo en un endpoint de tipo DELETE
+
+## Exceptions
+Maneja los errores
+Para crear nuestro repositorio creamos un nuevo paquete llamado `exceptions` en `src/main/java/com.misiontic.AccountMS/`
+Creamos una clase llamada `AccountNotFoundAdvice` y `AccountNotFoundException`
+
+## Despliegue ne Docker
+Comandos en `Dockerfile`
+* Instalamos el lenguaje - `openjdk:17-jdk-alpine`
+* Los proyectos de sprint son mas complejos, por ende:
+  * Creamos un ejecutable (.jar)
+  * Copiamos la direccion del ejecutable en la variable `JAR_FILE`, el ejecutable esta en la carpeta `target/*.jar`, como no sabemos el nombre ponemos el `*`
+* Copiamos el ejecutable y lo ponemos en nuestro contenedor
+* Indicamos el punto de entrada con el lenguaje, tipo de ejcutable y donde se encuentra el proyecto con `ENTRYPOINT`
+* Exponemos el puerto de nuestra app (wsgi = app web)
+
+## .JAR
+Para crear ejecutables .jar
+Ejecutamos `mvn package`
+
+#### Si hacemos cambios, debemos volver a realizar el .jar
+
+## Subir contendor a heroku
+Recordar abrir docker en windows
+* `heroku login`
+* `heroku container:login`
+* `heroku create NOMBRE` - crear la app de heroku desde la consola
+* `heroku container:push web --app NOMBRE`
+* `heroku container:release web --app NOMBRE`

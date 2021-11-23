@@ -9,12 +9,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ControllerAdvice
 @ResponseBody
 public class AccountNotFoundAdvice {
-
     @ResponseBody
     @ExceptionHandler(AccountNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     String EntityNotFoundAdvice(AccountNotFoundException ex){
         return ex.getMessage();
     }
-
 }
