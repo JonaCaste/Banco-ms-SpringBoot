@@ -1,5 +1,12 @@
 # Microservicio Spring Boot - MongoDB
 
+## Crear proyecto
+Para crear un proyecto vamos a hacer uso de `https://start.spring.io/`
+
+Adicionalmente agregamos las dependencias de:
+* `Spring Web ` para la construcción de nuestro servicio web
+* `Spring Data MongoDB ` para la conexión a nuestra DB NoSQL
+
 ## Conexión a la base de datos
 En el archivo `src/main/resources/application.properties` agregamos la conexión a la DB, en este caso mongoDB
 Escribimos: `spring.data.mongodb.uri = ${URL_DB:link_acceso}`
@@ -16,7 +23,7 @@ Creamos el paquete para nuestros modelos en `src/main/java/com.misiontic.Account
 
 Ahra creamos nuestra primera clase dentro de `models/` llamada `Account`
 
-### "Conección" entre las dos bases de datos de Banco
+### "Conexión" entre las dos bases de datos de Banco
 No podemos generar una llave foranea, ya que son bases de datos completamente diferentes.
 Para ello guardamos un campo "normal" en la DB en Account, simulando una FK
 Podemos utilizar el PK de una tabla para la otra trabal (en relaciones 1:1)
