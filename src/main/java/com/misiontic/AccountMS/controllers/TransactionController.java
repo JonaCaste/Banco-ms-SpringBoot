@@ -6,6 +6,8 @@ import com.misiontic.AccountMS.exceptions.AccountNotFoundException;
 import com.misiontic.AccountMS.repositories.AccountRepository;
 import com.misiontic.AccountMS.repositories.TransactionRepository;
 import org.springframework.web.bind.annotation.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import java.util.List;
 
@@ -28,7 +30,10 @@ public class TransactionController {
     * */
     @GetMapping("/transactions/{usernameOrigin}")
     List<Transaction> getTransactionByUsernameOrigin(@PathVariable String usernameOrigin){
-        return transactionRepository.getByUsernameOrigin(usernameOrigin);
+        List<Transaction> transactionsOrigin = transactionRepository.getByUsernameOrigin(usernameOrigin);
+        List<Transaction> transactionsDestinity = transactionRepository.getByUsernameDestiny(usernameOrigin);
+        List<Transaction> transactions = Stream.concat(transactionsOrigin.stream(), transactionsDestinity.stream()).collect(Collectors.toList());
+        return transactions;
     }
 
 
